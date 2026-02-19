@@ -56,6 +56,7 @@ speedInput.addEventListener("input", function () {
 	speedY = speedInput.value;
 });
 
-colorInput.addEventListener("input", function (e) {
-	colorval = e.target.value;
+colorInput.addEventListener("input", function () {
+	console.log(colorInput.value);
+	colorval = colorInput.value;
 });

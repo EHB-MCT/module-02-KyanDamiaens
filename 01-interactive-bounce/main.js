@@ -2,15 +2,17 @@ let canvasElement = document.querySelector("#canvas");
 
 //1. Add variables needed for animating the ball
 let x = 300;
-let y = 300;
+let y = 50;
 
 //2. Add variables (size, speed, colorVal) for controlling the sketch
 let size = 50;
 let speed = 10;
 let colorval = "red";
 
-let speedx = speed;
-let directionx = 1;
+let speedX = speed;
+let speedY = speed;
+let directionX = 1;
+let directionY = 1;
 
 function setup() {
 	//Creating a canvas to draw on, using the existing canvas element.
@@ -22,11 +24,15 @@ function draw() {
 	background(220);
 
 	// 3.1 Animate position
-	x += speed;
+	x += speedX * directionX;
+	y += speedY * directionY;
 
 	// 3.2 Bounce logic: check the edges
 	if (x > width - size / 2 || x < size / 2) {
-		speed = speed * -1;
+		directionX *= -1;
+	}
+	if (y > height - size / 2 || y < size / 2) {
+		directionY *= -1;
 	}
 	// 3.3 Draw
 	fill(colorval);
@@ -45,8 +51,9 @@ sizeInput.addEventListener("input", function () {
 	size = Number(sizeInput.value);
 });
 
-speedInput.addEventListener("input", function (e) {
-	speed = Number(e.target.value);
+speedInput.addEventListener("input", function () {
+	speedX = speedInput.value;
+	speedY = speedInput.value;
 });
 
 colorInput.addEventListener("input", function (e) {
